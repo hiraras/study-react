@@ -1,0 +1,12 @@
+
+.cell {
+  border: 1px solid black;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  display: inline-block;
+}
+.fade {
+  color: #999;
+}
