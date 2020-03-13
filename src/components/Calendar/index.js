@@ -38,16 +38,21 @@ class Calendar extends Component {
     return new Date(+monthEndDate + (7 - day) * ONE_DAY - 1);
   }
 
-  renderContent = () => {
+  createDateList = () => {
     const arr = [[], [], [], [], []];
     const firstDay = this.getCalendarFirstDay();
-    const { month: currentMonth } = this.getMonthOfDate();
     let i = 0;
-    while (i < 35) {
+    while (i < 7 * arr.length) {
       arr[Math.floor(i / 7)].push(firstDay.getTime() + i * ONE_DAY);
       i ++;
     }
-    return arr.map(function(item, index) {
+    return arr;
+  }
+
+  renderContent = () => {
+    const dateList = this.createDateList();
+    const { month: currentMonth } = this.getMonthOfDate();
+    return dateList.map(function(item, index) {
       return <div key={index}>
         { item.map(function(elem, i) {
           const date = new Date(elem);
