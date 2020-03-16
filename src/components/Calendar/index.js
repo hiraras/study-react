@@ -6,20 +6,6 @@ const DAY_NAME = ['日', '一', '二', '三', '四', '五', '六'];
 const TODAY = new Date();
 
 class Calendar extends Component {
-  getMonthOfDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const date = today.getDate();
-    const monthFirstDay = new Date(today.setDate(1));
-    return { year, month, date, monthFirstDay };
-  }
-
-  getNextMonthFirstDate = (date = TODAY) => {
-    const month = date.getMonth();
-    const nextMonthStart = new Date(date.setMonth(month + 1, 1));
-    return new Date(nextMonthStart.setHours(0, 0, 0, 0));
-  }
 
   getMonthFirstDate = (date = TODAY) => {
     const monthStart = new Date(date.setDate(1));
@@ -30,12 +16,6 @@ class Calendar extends Component {
     const monthFirstDate = this.getMonthFirstDate(date);
     const day = monthFirstDate.getDay();
     return new Date(monthFirstDate - day * ONE_DAY);
-  }
-
-  getCalendarEndDay = (date = TODAY) => {
-    const monthEndDate = new Date(this.getNextMonthFirstDate(date));
-    const day = monthEndDate.getDay();
-    return new Date(+monthEndDate + (7 - day) * ONE_DAY - 1);
   }
 
   createDateList = () => {
@@ -51,7 +31,7 @@ class Calendar extends Component {
 
   renderContent = () => {
     const dateList = this.createDateList();
-    const { month: currentMonth } = this.getMonthOfDate();
+    const currentMonth = new Date().getMonth();
     return dateList.map(function(item, index) {
       return <div key={index}>
         { item.map(function(elem, i) {
@@ -63,7 +43,6 @@ class Calendar extends Component {
   }
 
   render() {
-    console.log(this.getCalendarEndDay());
     return <div>
       <div className={'header'}>
         { DAY_NAME.map((item, index) => {
