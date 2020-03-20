@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../../../Common/index.css';
 
 class OldContext extends Component {
   getChildContext() {
@@ -8,9 +9,9 @@ class OldContext extends Component {
     };
   }
   render() {
-    return <Fragment>
+    return <div className={'wrapper'}>
       {this.props.children}
-    </Fragment>
+    </div>
   }
 }
 

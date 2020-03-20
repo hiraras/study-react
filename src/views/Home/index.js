@@ -1,9 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Calendar from '../../components/Calendar';
+import { Calendar, Dialog } from '../../components';
 import '../../Common/index.css';
 
 class Home extends Component {
+    state = {
+        count: 0,
+    }
+
     ControlButtons = (props) => {
         return (<div>
             <button onClick={this.toggleAuthority}>{props.startText}</button>
@@ -19,6 +23,36 @@ class Home extends Component {
         }
     }
 
+    testSetState = () => {
+        // this.setState({ count: this.state.count + 1 });
+        // this.setState({ count: this.state.count + 1 });
+        // this.setState({ count: this.state.count + 1 });
+        // console.log(this.state.count); // 只会加一次
+
+        // 当参数为一个函数时，每次执行结果都会变化到state中，update只会执行一次
+        this.setState(this.increment);
+        this.setState(this.increment);
+        this.setState(this.increment);
+        console.log(this.state.count); // 输出还是0，因为setState还是异步的，但是实际上加了3次
+
+        // update会执行两次
+        // this.setState({
+        //     count: this.state.count + 1
+        // }, () => {
+        //     this.setState({
+        //         count: this.state.count + 1
+        //     });
+        // });
+    }
+
+    componentWillUpdate() {
+        console.log('update');
+    }
+
+    increment = (state, props) => {
+        return { count: state.count + 1 };
+    }
+
     render() {
         return (
             <div className={'wrapper'}>
@@ -30,6 +64,9 @@ class Home extends Component {
                     {(props) => (<span>{props.name}</span>)}
                 </RenderAll>
                 <Calendar />
+                <button onClick={this.testSetState}>点击(count:{ this.state.count })</button>
+                <Dialog title={'设置'} content={<DialogContent />} />
+                <button>打开</button>
             </div>
         );
     }
@@ -62,6 +99,14 @@ const RenderAll = (props) => {
             {props.children[1](props)}
         </Fragment>
     );
+}
+
+const DialogContent = () => {
+    return (
+        <Fragment>
+            <div>hello!</div>
+        </Fragment>
+    )
 }
 
 export default Home;

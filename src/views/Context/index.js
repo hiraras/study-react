@@ -27,10 +27,6 @@ const Out = (props) => {
 
 class Inner extends Component {
   static contextType = C;
-
-  context = 1111;
-  a = 2;
-
   render() {
     console.log(this.context);
     return <div>{this.context.a}</div>
@@ -38,4 +34,3 @@ class Inner extends Component {
 }
 
 export default Context;
-
