@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './index.css';
+import Style from './index.css';
 
 class Mask extends Component {
 
   render() {
     return (
-      <div className={'mask'}>
+      <div className={Style.mask}>
         { this.props.children }
       </div>
     );

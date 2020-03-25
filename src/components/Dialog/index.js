@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Mask from './Components/Mask';
-import './index.css';
+import Style from './index.css';
 
 class Dialog extends Component {
 
@@ -19,12 +19,12 @@ class Dialog extends Component {
     const { title, content, onClose } = this.props;
     return (
       <Mask>
-        <div className={'container'}>
-          <div className={'header'}>
-            <div className={'title'}>{ title }</div>
-            <div className={'close'} onClick={onClose}>x</div>
+        <div className={Style.container}>
+          <div className={Style.header}>
+            <div className={Style.title}>{ title }</div>
+            <div className={Style.close} onClick={onClose}>x</div>
           </div>
-          <div className={'content'}>{ content }</div>
+          <div className={Style.content}>{ content }</div>
         </div>
       </Mask>
     );
