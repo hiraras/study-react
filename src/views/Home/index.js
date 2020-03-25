@@ -1,11 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Calendar, Dialog } from '../../components';
+import { Calendar, Dialog, Button } from '../../components';
 import '../../Common/index.css';
 
 class Home extends Component {
     state = {
         count: 0,
+        showDialog: true,
     }
 
     ControlButtons = (props) => {
@@ -53,7 +54,14 @@ class Home extends Component {
         return { count: state.count + 1 };
     }
 
+    closeDialog = () => {
+        this.setState({
+            showDialog: false,
+        });
+    }
+
     render() {
+        const { showDialog } = this.state;
         return (
             <div className={'wrapper'}>
                 <MajorRender milliseconds={666} />
@@ -65,8 +73,10 @@ class Home extends Component {
                 </RenderAll>
                 <Calendar />
                 <button onClick={this.testSetState}>点击(count:{ this.state.count })</button>
-                <Dialog title={'设置'} content={<DialogContent />} />
+                {showDialog && <Dialog title={'设置'} content={<DialogContent />} closeAble={true} onClose={this.closeDialog} />}
                 <button>打开</button>
+                <Counter />
+                <Button text={'click'} />
             </div>
         );
     }
@@ -109,5 +119,19 @@ const DialogContent = () => {
     )
 }
 
-export default Home;
+const Counter = () => {
+    const [data, changeData] = useState({ count: 0, msg: 'count' });
+    const [msg, changeMsg] = useState('hah');
+    useEffect(() => {
+        console.log('ss');
+        setInterval(() => {
+            changeData({ count: data.count + 1, msg: 'count:' + (data.count + 1) });
+        }, 1000);
+    }, 1);
+    return <div>
+        <p>{ data.count } -- { data.msg }</p>
+        <p>{ msg }</p>
+    </div>;
+};
 
+export default Home;
