@@ -1,12 +1,13 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Calendar, Dialog, Button } from '../../components';
-import '../../Common/index.css';
+import CommonStyle from '../../Common/index.css';
+import * as Common from '../../Common/data.js';
 
 class Home extends Component {
     state = {
         count: 0,
-        showDialog: true,
+        showDialog: false,
     }
 
     ControlButtons = (props) => {
@@ -63,7 +64,7 @@ class Home extends Component {
     render() {
         const { showDialog } = this.state;
         return (
-            <div className={'wrapper'}>
+            <div className={CommonStyle.wrapper}>
                 <MajorRender milliseconds={666} />
                 <MajorRenderWithed time={'2020'} milliseconds={11} />
                 <this.ControlButtons startText={'开始'} />

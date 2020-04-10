@@ -10,3 +10,6 @@
 .fade {
   color: #999;
 }
+.selected {
+  color: #f00;
+}

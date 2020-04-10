@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../../../Common/index.css';
+import CommonStyle from '../../../Common/index.css';
 
 class OldContext extends Component {
   getChildContext() {
@@ -9,7 +9,7 @@ class OldContext extends Component {
     };
   }
   render() {
-    return <div className={'wrapper'}>
+    return <div className={CommonStyle.wrapper}>
       {this.props.children}
     </div>
   }

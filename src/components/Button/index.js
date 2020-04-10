@@ -2,9 +2,8 @@ import React, { PureComponent } from 'react';
 
 class Button extends PureComponent {
   render() {
-    const { text } = this.props;
-    console.log('render button');
-    return <button>{ text }</button>
+    const { text, onClick } = this.props;
+    return <button onClick={onClick}>{ text }</button>
   }
 }
 export default Button;

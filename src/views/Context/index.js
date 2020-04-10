@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../Common/index.css';
+import CommonStyle from '../../Common/index.css';
 
 const C = React.createContext('pop');
 class Context extends Component {
@@ -12,7 +12,7 @@ class Context extends Component {
     }
     render() {
         return (
-            <div className={'wrapper'}>
+            <div className={CommonStyle.wrapper}>
               <C.Provider value={this.state.data}>
                 <Out />
               </C.Provider>
